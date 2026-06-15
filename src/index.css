@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ─────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background-color: #FDF8F0;
+    color: #1A1A1A;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ─── Components ────────────────────────────────────────── */
+@layer components {
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .glass-dark {
+    background: rgba(15, 15, 15, 0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card {
+    background: rgba(20, 15, 5, 0.5);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(201, 149, 42, 0.2);
+  }
+
+  /* Navbar glass */
+  .navbar-glass {
+    background: rgba(253, 248, 240, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201, 149, 42, 0.15);
+  }
+
+  .navbar-transparent {
+    background: transparent;
+  }
+
+  /* Gold button */
+  .btn-gold {
+    @apply bg-gold-gradient text-charcoal-900 font-body font-semibold px-6 py-3 rounded-full
+           shadow-gold hover:shadow-gold-lg transition-all duration-300
+           hover:scale-105 active:scale-100 text-sm tracking-wide;
+  }
+
+  .btn-outline-gold {
+    @apply border border-gold-500 text-gold-500 font-body font-semibold px-6 py-3 rounded-full
+           transition-all duration-300 hover:bg-gold-500 hover:text-charcoal-900 text-sm tracking-wide;
+  }
+
+  /* Section heading */
+  .section-heading {
+    @apply font-display text-4xl md:text-5xl font-semibold text-charcoal-900 leading-tight;
+  }
+
+  .section-subheading {
+    @apply font-body text-charcoal-600 text-lg leading-relaxed;
+  }
+
+  /* Gold divider */
+  .gold-divider {
+    @apply w-16 h-0.5 bg-gold-gradient mx-auto my-4;
+  }
+
+  /* Product card */
+  .product-card {
+    @apply bg-white rounded-2xl overflow-hidden shadow-card transition-all duration-300
+           hover:shadow-card-hover hover:-translate-y-1;
+    border: 1px solid rgba(201, 149, 42, 0.1);
+  }
+  .product-card:hover {
+    border-color: rgba(201, 149, 42, 0.3);
+  }
+
+  /* Quantity control */
+  .qty-btn {
+    @apply w-9 h-9 rounded-full border border-gold-400 text-gold-600 font-semibold
+           flex items-center justify-center transition-colors hover:bg-gold-400 hover:text-charcoal-900
+           text-lg leading-none;
+  }
+}
+
+/* ─── Review infinite scroll ─────────────────────────────── */
+.reviews-track {
+  display: flex;
+  width: max-content;
+  animation: scrollLeft 40s linear infinite;
+}
+.reviews-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── Hero slide fade ────────────────────────────────────── */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+.hero-slide.active {
+  opacity: 1;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF3E0;
+}
+::-webkit-scrollbar-thumb {
+  background: #C9952A;
+  border-radius: 3px;
+}
+
+/* ─── Section wave divider ───────────────────────────────── */
+.wave-divider svg {
+  display: block;
+}
+
+/* ─── Mobile menu slide ──────────────────────────────────── */
+.mobile-menu-enter {
+  transform: translateY(-8px);
+  opacity: 0;
+}
+.mobile-menu-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 0.25s ease-out;
+}
