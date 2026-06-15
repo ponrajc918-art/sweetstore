@@ -2,9 +2,7 @@ import { getCollection, COLLECTIONS } from '../../lib/db.js'
 import { requireAuth } from '../../lib/auth.js'
 import { validateProduct, sanitizeProduct } from '../../lib/validate.js'
 
-export const config = {
-  runtime: "nodejs20.x"
-}
+
 
 export default async function handler(req, res) {
   res.setHeader('Content-Type', 'application/json')
